@@ -8,7 +8,16 @@ class OrderService:
         self.repository = OrderRepository(db)
 
     async def create_order(self, order_data: OrderCreate) -> Order:
-        return await self.repository.create(order_data)
+        order = await self.repository.create(order_data)
+        # Publish event
+        from app.modules.order.producer.service import publish_order_created
+        await publish_order_created({
+            "id": order.id,
+            "product_id": order.product_id,
+            "quantity": order.quantity,
+            "status": order.status
+        })
+        return order
 
     async def get_order(self, order_id: int) -> Order | None:
         return await self.repository.get_by_id(order_id)

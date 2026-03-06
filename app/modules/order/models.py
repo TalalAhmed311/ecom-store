@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float, DateTime
+from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey
 from sqlalchemy.sql import func
 from app.common.database import Base
 
@@ -7,6 +7,8 @@ class Order(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, index=True)
+    product_id = Column(String, index=True)
+    quantity = Column(Integer)
     total_amount = Column(Float)
     status = Column(String, default="pending")
     created_at = Column(DateTime(timezone=True), server_default=func.now())

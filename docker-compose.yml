@@ -27,7 +27,7 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=ecom_db
     ports:
-      - "5432:5432"
+      - "5435:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
@@ -46,7 +46,7 @@ services:
       - mongo_data:/data/db
 
   kafka:
-    image: bitnami/kafka:latest
+    image: bitnami/kafka:3.3
     container_name: ecom_kafka
     ports:
       - "9092:9092"

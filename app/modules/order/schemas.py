@@ -4,6 +4,8 @@ from typing import Optional
 
 class OrderBase(BaseModel):
     user_id: int
+    product_id: str
+    quantity: int
     total_amount: float
     status: str = "pending"
 
