@@ -46,7 +46,7 @@ services:
       - mongo_data:/data/db
 
   kafka:
-    image: bitnami/kafka:3.3
+    image: apache/kafka:latest
     container_name: ecom_kafka
     ports:
       - "9092:9092"
@@ -60,7 +60,7 @@ services:
       - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
       - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=PLAINTEXT
     volumes:
-      - kafka_data:/bitnami/kafka
+      - kafka_data:/kafka
 
 volumes:
   postgres_data:
